@@ -1,0 +1,254 @@
+/* 1990s Style Counter Display */
+/* Mimics the classic look of visitor counters from the dotcom era */
+
+.nineties-counter {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+  border: 3px solid #333;
+  border-radius: 10px;
+  box-shadow: 
+    0 0 0 2px #fff,
+    0 0 0 4px #333,
+    0 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  min-width: 300px;
+  text-align: center;
+  animation: ninetiesGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes ninetiesGlow {
+  0% {
+    box-shadow: 
+      0 0 0 2px #fff,
+      0 0 0 4px #333,
+      0 4px 8px rgba(0, 0, 0, 0.3),
+      0 0 10px rgba(255, 107, 107, 0.5);
+  }
+  100% {
+    box-shadow: 
+      0 0 0 2px #fff,
+      0 0 0 4px #333,
+      0 4px 8px rgba(0, 0, 0, 0.3),
+      0 0 20px rgba(78, 205, 196, 0.7);
+  }
+}
+
+.nineties-counter-container {
+  background: #000;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  padding: 10px;
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+.nineties-counter-title {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #ffff00;
+  text-shadow: 0 0 3px #ffff00;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nineties-counter-digits {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin: 10px 0;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.nineties-digit {
+  width: 20px;
+  height: 30px;
+  background: #000;
+  border: 1px solid #00ff00;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #00ff00;
+  text-shadow: 0 0 3px #00ff00;
+  animation: ninetiesDigitPulse 1s ease-in-out infinite alternate;
+  position: relative;
+}
+
+.nineties-digit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 0, 0.1) 50%, transparent 70%);
+  animation: ninetiesScan 2s linear infinite;
+}
+
+@keyframes ninetiesDigitPulse {
+  0% {
+    box-shadow: 0 0 3px #00ff00;
+  }
+  100% {
+    box-shadow: 0 0 8px #00ff00, 0 0 12px #00ff00;
+  }
+}
+
+@keyframes ninetiesScan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.nineties-counter-footer {
+  margin-top: 8px;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nineties-label {
+  color: #ffff00;
+  font-weight: bold;
+}
+
+.nineties-count {
+  color: #00ff00;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.nineties-counter-decoration {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #ff69b4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.nineties-star {
+  color: #ffff00;
+  animation: ninetiesStarTwinkle 1.5s ease-in-out infinite alternate;
+}
+
+.nineties-text {
+  color: #ff69b4;
+  font-style: italic;
+}
+
+@keyframes ninetiesStarTwinkle {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* 1990s-style hover effects */
+.nineties-counter:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.nineties-counter:hover .nineties-digit {
+  animation: ninetiesDigitGlow 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes ninetiesDigitGlow {
+  0% {
+    background: #000;
+    color: #00ff00;
+  }
+  100% {
+    background: #001100;
+    color: #00ff00;
+    box-shadow: 0 0 15px #00ff00;
+  }
+}
+
+/* Mobile responsive for 1990s style */
+@media (max-width: 768px) {
+  .nineties-counter {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    transform: none;
+    min-width: auto;
+    max-width: 100%;
+  }
+  
+  .nineties-counter-digits {
+    gap: 1px;
+  }
+  
+  .nineties-digit {
+    width: 16px;
+    height: 24px;
+    font-size: 14px;
+  }
+  
+  .nineties-counter-title {
+    font-size: 10px;
+  }
+  
+  .nineties-counter-footer {
+    font-size: 10px;
+  }
+  
+  .nineties-counter-decoration {
+    font-size: 8px;
+  }
+}
+
+/* 1990s-style loading animation */
+.nineties-counter.loading .nineties-digit {
+  animation: ninetiesLoading 1s ease-in-out infinite;
+}
+
+@keyframes ninetiesLoading {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Classic 1990s marquee effect for title */
+.nineties-counter-title {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nineties-counter-title::before {
+  content: attr(data-text);
+  animation: ninetiesMarquee 10s linear infinite;
+}
+
+@keyframes ninetiesMarquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+} 
